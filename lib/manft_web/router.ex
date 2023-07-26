@@ -14,6 +14,8 @@ defmodule ManftWeb.Router do
 
   scope "/api", ManftWeb do
     pipe_through :api
+
+    get "/arts", ArtsController, :index
   end
 
   # Enables LiveDashboard only for development

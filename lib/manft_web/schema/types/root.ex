@@ -1,6 +1,7 @@
 defmodule ManftWeb.Schema.Types.Root do
   use Absinthe.Schema.Notation
 
+  alias ManftWeb.Middlewares.Log
   alias Manft.Schema.Types
 
   import_types Types.Art
@@ -12,6 +13,12 @@ defmodule ManftWeb.Schema.Types.Root do
       arg :id, non_null(:uuid4)
 
       resolve &ArtResolver.get/2
+      middleware Log
+    end
+
+    field :art, list_of(:art) do
+      resolve &ArtResolver.all/2
+      middleware Log
     end
   end
 
@@ -21,6 +28,7 @@ defmodule ManftWeb.Schema.Types.Root do
       arg :input, non_null(:create_art_input)
 
       resolve &ArtResolver.create/2
+      middleware Log
     end
   end
 
