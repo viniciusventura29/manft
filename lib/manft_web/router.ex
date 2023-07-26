@@ -5,6 +5,13 @@ defmodule ManftWeb.Router do
     plug :accepts, ["json"]
   end
 
+  scope "/api" do
+    pipe_through :api
+
+    forward "/graphql", Absinthe.Plug, schema: ManftWeb.Schema
+    forward "/graphiql", Absinthe.Plug.GraphiQL, schema: ManftWeb.Schema
+  end
+
   scope "/api", ManftWeb do
     pipe_through :api
   end
