@@ -19,8 +19,7 @@ defmodule ManftWeb.Endpoint do
   plug Plug.Static,
     at: "/",
     from: :manft,
-    gzip: false,
-    only: ~w(assets fonts images favicon.ico robots.txt)
+    gzip: false
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.

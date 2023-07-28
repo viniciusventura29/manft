@@ -14,7 +14,7 @@ defmodule ManftWeb.Middlewares.Log do
     resolution
   end
 
-  defp log_message(%Absinthe.Resolution{value: value}, do: "Resolution value: #{inspect(value)}")
+  defp log_message(%Absinthe.Resolution{value: value}), do: "Resolution value: #{inspect(value)}"
 
   defp filter_info(log) do
     String.replace(log, ~r/hash: "\w*"/, "hash: #{@filtered_string}")

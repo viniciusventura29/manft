@@ -1,7 +1,7 @@
 defmodule ManftWeb.View.ArtsView do
   use ManftWeb, :view
 
-  def render("arts.json", %{data:%{arts.arts}}) do
+  def render("arts.json", %{data: %{arts: arts}}) do
     %{arts: render_many(arts, Manft.ArtsView, "art.json", as: :art)}
   end
 

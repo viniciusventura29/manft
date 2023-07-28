@@ -1,6 +1,8 @@
 defmodule ManftWeb.Schema.Types.Root do
   use Absinthe.Schema.Notation
 
+  alias Manft.Arts.{Art, Repo}
+
   alias ManftWeb.Middlewares.Log
   alias Manft.Schema.Types
 
@@ -16,9 +18,10 @@ defmodule ManftWeb.Schema.Types.Root do
       middleware Log
     end
 
-    field :art, list_of(:art) do
-      resolve &ArtResolver.all/2
-      middleware Log
+    field :arts, list_of(:art) do
+      resolve fn _params, _context ->
+        {:ok, Repo.all(Art)}
+      end
     end
   end
 
